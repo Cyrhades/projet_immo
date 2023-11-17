@@ -2,7 +2,7 @@ require('dotenv').config();
 const con = require('../app/database_sql.js');
 const fs = require('fs');
 const path = require("path");
-
+const allSql = [];
 fs.readdir('./data/', (err, files) => {
     if (err) {
         console.error('Erreur lors de la lecture du répertoire :', err);
@@ -15,6 +15,9 @@ fs.readdir('./data/', (err, files) => {
         const sqlQuery = fs.readFileSync(path.join(__dirname, sqlFile), 'utf-8');
 
         // Exécuter le script SQL lu depuis le fichier
-        con.promise().query(sqlQuery).then(([rows]) => {});
+        allSql.push(con.promise().query(sqlQuery).catch(()=>{}));
     });
+    // on quitte le processus quand toute les requetes ont été eecutée
+    Promise.all(allSql).then((values) => { process.exit(); });
 });
+
