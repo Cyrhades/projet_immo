@@ -1,7 +1,7 @@
 class HomeController {
 
     index (request, response) {
-        response.render('index')
+        response.render('home/index')
     }
 
 };
