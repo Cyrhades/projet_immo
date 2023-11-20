@@ -3,6 +3,7 @@ const app = express()
 const path = require("path")
 require('dotenv').config();
 
+app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')))
 app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'templates'));

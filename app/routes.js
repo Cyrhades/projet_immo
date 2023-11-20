@@ -9,4 +9,9 @@ module.exports = (app) => {
         let objController = require('../src/controllers/RegisterController.js')
         objController.index(request, response)
     })
+    
+    app.post('/inscription', (request, response) => {
+        let objController = require('../src/controllers/RegisterController.js')
+        objController.process(request, response)
+    })
 };
