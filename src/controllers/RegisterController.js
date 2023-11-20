@@ -7,6 +7,7 @@ class RegisterController {
     }
 
     process(request, response) {
+
         let entity = new User();
         entity.setEmail(request.body.email)
             .setPassword(request.body.password)
@@ -16,9 +17,16 @@ class RegisterController {
             .setPhone(request.body.phone)
 
         const UserRepo = new UserRepository();
-        UserRepo.add(entity);
-
-        response.render('register/index');
+        UserRepo.existsEmail(entity.getEmail()).then(emailexists => {
+            // console.log(emailexists);
+            if(emailexists) {
+                // on renvoi le formulaire avec une erreur
+                response.render('register/index');
+            } else {
+                // On enregistre en BDD
+                UserRepo.add(entity);
+            }
+        })
     }
 };
 
