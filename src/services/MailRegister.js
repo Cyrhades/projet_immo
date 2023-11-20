@@ -11,8 +11,8 @@ module.exports = (user) => {
         .request({
             Messages: [{
                 From: {
-                    Email: "cyrhades76+mailjet@gmail.com",
-                    Name: "Toitoimontoit"
+                    Email: `${process.env.MJ_MAIL_SOCIETE}`,
+                    Name: `${process.env.MJ_NOM_SOCIETE}`,
                 },
                 To: [{
                     Email: `${user.email}`,
