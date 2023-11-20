@@ -1,5 +1,6 @@
 const User = require('../entity/User.js');
 const UserRepository = require('../repository/UserRepository.js');
+const MailRegister = require('../services/MailRegister');
 class RegisterController {
 
     index (request, response) {
@@ -26,7 +27,10 @@ class RegisterController {
                 });
             } else {
                 // On enregistre en BDD
-                UserRepo.add(entity);
+                UserRepo.add(entity).then(() => {
+                    MailRegister(entity);
+                }) 
+
             }
         })
     }
