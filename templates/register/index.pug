@@ -3,6 +3,8 @@ extends ../layout.pug
 block content
     .container
         h1 Inscription 
+        if error 
+            .alert.alert-danger #{error}
         form(action="/inscription" method="post")
             .input-group.mb-3
                 .input-group-prepend

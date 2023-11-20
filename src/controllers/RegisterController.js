@@ -21,7 +21,9 @@ class RegisterController {
             // console.log(emailexists);
             if(emailexists) {
                 // on renvoi le formulaire avec une erreur
-                response.render('register/index');
+                response.render('register/index', {
+                    error : `L'adresse Email existe déjà dans notre base de données.`
+                });
             } else {
                 // On enregistre en BDD
                 UserRepo.add(entity);
