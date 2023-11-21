@@ -2,4 +2,7 @@ extends ../layout.pug
 
 block content
     .container
-        p Hello World !!!
+        if session.user 
+            p Bonjour #{session.user.lastname} #{session.user.firstname}
+        else 
+            p Vous n'êtes pas connecté

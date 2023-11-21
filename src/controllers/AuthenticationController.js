@@ -15,7 +15,15 @@ class AuthenticationController {
             if(infosUser) {
                 // Etape 3 : Vérifier si mot de passe correct
                 if(bcrypt.compareSync(request.body.password, infosUser.password)) {
-                    request.flash("notify", "Vous êtes maintenant connecté.")
+                    // Etape 4 : Maintenir la connexion de l'utilisateur
+                    request.session.user = {
+                        id: infosUser.id,
+                        civility: infosUser.civility,
+                        firstname : infosUser.firstname,
+                        lastname: infosUser.lastname,
+                        email: infosUser.email
+                    };
+                    request.flash("notify", "Vous êtes maintenant connecté.");
                     response.redirect('/');
                     return;
                 }

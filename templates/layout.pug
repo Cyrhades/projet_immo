@@ -17,10 +17,14 @@ html(lang="fr")
                     span.navbar-toggler-icon
                 #navbarNavDropdown.collapse.navbar-collapse
                     ul.navbar-nav
-                        li.nav-item
-                            a.nav-link(href="/inscription") Inscription
-                        li.nav-item
-                            a.nav-link(href="/connexion") Connexion
+                        if session.user 
+                            li.nav-item
+                                a.nav-link(href="/") Déconnexion
+                        else
+                            li.nav-item
+                                a.nav-link(href="/inscription") Inscription
+                            li.nav-item
+                                a.nav-link(href="/connexion") Connexion
         
         .container
             - var messages = getMessages()

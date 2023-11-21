@@ -14,10 +14,35 @@ app.use(session({
 }));
 
 //--------------------------------------------------------------------
+//      Fake session pour dev pour esquiver browser 
+//  refresh qui nous perd la session à chaque re-démarrage
+//--------------------------------------------------------------------
+if(process.env.APP_ENV === 'dev') {
+    /* A décommenter après avoir codé le système de déconnexion
+    app.use((req, res, next) => {
+        req.session.user = {
+            id: 52,
+            email: 'cyrhades76@gmail.com',
+            civility: '1',
+            lastname: 'Lecomte',
+            firstname: 'Cyril'
+        };
+        next();
+    })
+    */
+}
+
+//--------------------------------------------------------------------
+//      transférer les sessions à toutes les vues (templates)
+//--------------------------------------------------------------------
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    next();
+})
+//--------------------------------------------------------------------
 //      Ajout du midlleware express flash messages
 //--------------------------------------------------------------------
 app.use(flash());
-
 app.use(express.urlencoded({extended: false}))
 app.use(express.static(path.join(__dirname, 'public')))
 
