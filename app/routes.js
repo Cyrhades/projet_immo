@@ -25,4 +25,9 @@ module.exports = (app) => {
         let objController = require('../src/controllers/AuthenticationController.js')
         objController.process(request, response)
     })
+
+    app.get('/deconnexion', (request, response) => {
+        let objController = require('../src/controllers/AuthenticationController.js')
+        objController.deconnect(request, response)
+    })
 };

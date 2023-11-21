@@ -35,6 +35,11 @@ class AuthenticationController {
        
     }
 
+    deconnect(request, response) {
+        request.session.user = null;
+        request.flash("notify", "Vous êtes maintenant déconnecté.");
+        response.redirect('/');
+    }
 };
 
 module.exports = new AuthenticationController();
