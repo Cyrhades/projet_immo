@@ -23,5 +23,6 @@ module.exports = (user) => {
                 HTMLPart: "<h3>Bienvenue sur la plateforme Toitoimontoit!</h3><br /><br/>Votre compte a bien été créé.<br /><br/>Merci de l'interet que vous portez à notre agence<br /><br/>L'équipe de Toitoimontoit"
             }]
         });
-    }
+    } 
+    return Promise.resolve();
 }
