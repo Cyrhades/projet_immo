@@ -14,4 +14,15 @@ module.exports = (app) => {
         let objController = require('../src/controllers/RegisterController.js')
         objController.process(request, response)
     })
+
+
+    app.get('/connexion', (request, response) => {
+        let objController = require('../src/controllers/AuthenticationController.js')
+        objController.index(request, response)
+    })
+
+    app.post('/connexion', (request, response) => {
+        let objController = require('../src/controllers/AuthenticationController.js')
+        objController.process(request, response)
+    })
 };

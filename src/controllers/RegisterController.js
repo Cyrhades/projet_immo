@@ -25,7 +25,12 @@ class RegisterController {
             if(emailexists) {
                 // on renvoi le formulaire avec une erreur
                 response.render('register/index', {
-                    error : `L'adresse Email existe déjà dans notre base de données.`
+                    error : `L'adresse Email existe déjà dans notre base de données.`,
+                    email : entity.getEmail(),
+                    civility : entity.getCivility(),
+                    lastname: entity.getLastname(),
+                    firstname: entity.getFirstname(),
+                    phone: entity.getPhone()
                 });
             } else {
                 // On enregistre en BDD
