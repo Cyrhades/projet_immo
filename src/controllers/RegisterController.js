@@ -1,6 +1,8 @@
 const User = require('../entity/User.js');
 const UserRepository = require('../repository/UserRepository.js');
 const MailRegister = require('../services/MailRegister');
+const bcrypt = require('bcryptjs');
+
 class RegisterController {
 
     index (request, response) {
@@ -11,7 +13,7 @@ class RegisterController {
 
         let entity = new User();
         entity.setEmail(request.body.email)
-            .setPassword(request.body.password)
+            .setPassword(bcrypt.hashSync(request.body.password, bcrypt.genSaltSync(10)))
             .setCivility(request.body.civility)
             .setLastname(request.body.lastname)
             .setFirstname(request.body.firstname)
@@ -28,8 +30,11 @@ class RegisterController {
             } else {
                 // On enregistre en BDD
                 UserRepo.add(entity).then(() => {
-                    MailRegister(entity);
-                }) 
+                    MailRegister(entity).then(() => {
+                        request.flash('notify', 'Votre compte a bien été créé.');
+                        response.redirect('/');
+                    })
+                });
 
             }
         })

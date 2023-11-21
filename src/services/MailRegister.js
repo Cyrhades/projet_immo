@@ -6,7 +6,7 @@ module.exports = (user) => {
             apiSecret: process.env.MJ_APIKEY_PRIVATE
         });
 
-        mailjet
+        return mailjet
         .post('send', { version: 'v3.1' })
         .request({
             Messages: [{
