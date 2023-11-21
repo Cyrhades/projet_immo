@@ -30,4 +30,10 @@ module.exports = (app) => {
         let objController = require('../src/controllers/AuthenticationController.js')
         objController.deconnect(request, response)
     })
+
+
+    app.get('/admin', (request, response) => {
+        let objController = require('../src/controllers/DashboardController.js')
+        objController.index(request, response)
+    })
 };

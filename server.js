@@ -18,7 +18,6 @@ app.use(session({
 //  refresh qui nous perd la session à chaque re-démarrage
 //--------------------------------------------------------------------
 if(process.env.APP_ENV === 'dev') {
-    /* A décommenter après avoir codé le système de déconnexion
     app.use((req, res, next) => {
         req.session.user = {
             id: 52,
@@ -29,7 +28,6 @@ if(process.env.APP_ENV === 'dev') {
         };
         next();
     })
-    */
 }
 
 //--------------------------------------------------------------------
@@ -37,6 +35,7 @@ if(process.env.APP_ENV === 'dev') {
 //--------------------------------------------------------------------
 app.use((req, res, next) => {
     res.locals.session = req.session;
+    res.locals.route = req._parsedUrl.pathname;
     next();
 })
 //--------------------------------------------------------------------

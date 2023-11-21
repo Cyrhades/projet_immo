@@ -19,6 +19,8 @@ html(lang="fr")
                     ul.navbar-nav
                         if session.user 
                             li.nav-item
+                                a.nav-link(href="/admin") Administration
+                            li.nav-item
                                 a.nav-link(href="/deconnexion") Déconnexion
                         else
                             li.nav-item
