@@ -15,20 +15,21 @@ block content
                     th email 
                     th Téléphone 
                     th(width="1%") 
-            each user in users
-                tr
-                    td #{user.id}
-                    if user.civility == 2
-                        td Madame #{user.firstname} #{user.lastname}
-                    else
-                        td Monsieur #{user.firstname} #{user.lastname}
-                    td #{user.email}
-                    td #{user.phone}
-                    td.text-nowrap 
-                        a.btn.btn-primary(href="#")
-                            i.fa.fa-edit
-                        span &nbsp;&nbsp;
-                        a.btn.btn-danger(href="#")
-                            i.fa.fa-trash
+            tbody
+                each user in users
+                    tr
+                        td #{user.id}
+                        if user.civility == 2
+                            td Madame #{user.firstname} #{user.lastname}
+                        else
+                            td Monsieur #{user.firstname} #{user.lastname}
+                        td #{user.email}
+                        td #{user.phone}
+                        td.text-nowrap 
+                            a.btn.btn-primary(href="#")
+                                i.fa.fa-edit
+                            span &nbsp;&nbsp;
+                            a.btn.btn-danger(href="#")
+                                i.fa.fa-trash
     else 
         .alert.alert-info Aucun utilisateur
