@@ -22,4 +22,9 @@ module.exports = class UserRepository {
             return (result[0].length > 0 ? result[0] : null);
         });
     }
+
+    async deleteUser(id) {
+        return await con.promise().query('DELETE FROM `users` WHERE ?', { id });
+    }
+    
 };

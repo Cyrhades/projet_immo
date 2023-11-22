@@ -9,8 +9,11 @@ class UserController {
     }
 
     deleteUser (request, response) {
-        console.log(request.params.id)
-        response.send("Vous allez supprimer ici l'id : "+request.params.id)
+        const repo = new UserRepository();
+        repo.deleteUser(request.params.id).then(() => {
+            request.flash("notify", "L'utilisateur a bien été supprimé.")
+            response.redirect("/admin/user");
+        })
     }
 
 
