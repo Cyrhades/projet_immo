@@ -36,4 +36,9 @@ module.exports = (app) => {
         let objController = require('../src/controllers/DashboardController.js')
         objController.index(request, response)
     })
+
+    app.get('/admin/user', (request, response) => {
+        let objController = require('../src/controllers/UserController.js')
+        objController.index(request, response)
+    })
 };
