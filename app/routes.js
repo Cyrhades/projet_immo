@@ -41,4 +41,9 @@ module.exports = (app) => {
         let objController = require('../src/controllers/UserController.js')
         objController.index(request, response)
     })
+
+    app.get('/admin/user/delete/:id([0-9]+)', (request, response) => {
+        let objController = require('../src/controllers/UserController.js')
+        objController.deleteUser(request, response)
+    })
 };

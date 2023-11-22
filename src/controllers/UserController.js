@@ -8,6 +8,12 @@ class UserController {
         });
     }
 
+    deleteUser (request, response) {
+        console.log(request.params.id)
+        response.send("Vous allez supprimer ici l'id : "+request.params.id)
+    }
+
+
 };
 
 module.exports = new UserController();
