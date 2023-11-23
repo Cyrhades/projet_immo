@@ -1,0 +1,51 @@
+extends ../layout.pug
+
+block breadcrumb  
+    li
+        a(href='#')
+            em.fa.fa-user &nbsp;
+    li(class='active') Collaborateurs
+
+block content
+    .container
+        h1 Edition de l'utilisateur  
+        if error 
+            .alert.alert-danger #{error}
+        form(method="post")
+            .input-group.mb-3
+                .input-group-prepend
+                    .input-group-text.d-none.d-lg-block 
+                        i.fa.fa-envelope 
+                input(type="email" class="form-control" placeholder="Email" name="email" value=user.email)     
+    
+            hr
+    
+            .input-group.mb-3
+                .input-group-prepend
+                    .input-group-text.d-none.d-lg-block 
+                        i.fa.fa-restroom
+                select(class="form-control" placeholder="Civilité" name="civility")
+                    option(value="1" selected=user.civility==1) Monsieur
+                    option(value="2" selected=user.civility==2) Madame
+    
+            .input-group.mb-3
+                .input-group-prepend
+                    .input-group-text.d-none.d-lg-block
+                        i.fa.fa-user
+                input(type="text" class="form-control" placeholder="Nom" name="lastname" value=user.lastname)
+    
+            .input-group.mb-3
+                .input-group-prepend
+                    .input-group-text.d-none.d-lg-block 
+                        i.fa.fa-user
+                input(type="text" class="form-control" placeholder="Prénom" name="firstname" value=user.firstname)
+    
+            .input-group.mb-3
+                .input-group-prepend
+                    .input-group-text.d-none.d-lg-block
+                        i.fa.fa-phone
+                input(type="phone" class="form-control" placeholder="Téléphone" name="phone" value=user.phone) 
+    
+            .row.justify-content-center
+                .col-2
+                    button.btn.btn-primary(type="submit") Modifier

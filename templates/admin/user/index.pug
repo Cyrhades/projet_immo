@@ -26,7 +26,7 @@ block content
                         td #{user.email}
                         td #{user.phone}
                         td.text-nowrap 
-                            a.btn.btn-primary(href="#")
+                            a.btn.btn-primary(href="/admin/user/edit/"+user.id)
                                 i.fa.fa-edit
                             span &nbsp;&nbsp;
                             a.btn.btn-danger(href="/admin/user/delete/"+user.id)
