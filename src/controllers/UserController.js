@@ -38,31 +38,26 @@ class UserController {
         delete entity.password;    
 
         const repo = new UserRepository();
-        repo.getUserById(request.params.id).then(async (user) => {
+        repo.getUserById(request.params.id).then((user) => {
+            let promises = [];
             if(user.email !== entity.email) {
-                await repo.existsEmail(entity.getEmail()).then(emailexists => {
-                    if(emailexists) {
-                        response.render(
-                            'admin/user/edit', 
-                            {error: "Un autre utilisateur a déjà cet email",user: entity}
-                        );
-                        return;
-                    }
-                }).catch(() => {
-                    response.render(
-                        'admin/user/edit', 
-                        {error: "Un autre utilisateur a déjà cet email",user: entity}
-                    );
-                    return;
-                });
-
-                // 
-                console.log('ici')
+                promises[0] = repo.existsEmail(entity.getEmail()).then(emailexists => {
+                    if(emailexists)  return Promise.reject();
+                })
             } 
-            // Si email pas en doublon ou toujours le même
-            repo.update(request.params.id, entity).then(() => {
-                request.flash("notify","L'utilisateur a bien été modifié");
-                response.redirect("/admin/user")
+
+            Promise.all(promises).then(() => {
+                // Si email pas en doublon ou toujours le même
+                repo.update(request.params.id, entity).then(() => {
+                    request.flash("notify","L'utilisateur a bien été modifié");
+                    response.redirect("/admin/user")
+                });
+            }).catch(() => {
+                response.render(
+                    'admin/user/edit', 
+                    {error: "Un autre utilisateur a déjà cet email",user: entity}
+                );
+                return;
             });
         });
     }
