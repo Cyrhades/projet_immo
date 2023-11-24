@@ -20,7 +20,7 @@ app.use(session({
 if(process.env.APP_ENV === 'dev') {
     app.use((req, res, next) => {
         req.session.user = {
-            id: 52,
+            id: 54,
             email: 'cyrhades76@gmail.com',
             civility: '1',
             lastname: 'Lecomte',
@@ -42,7 +42,7 @@ app.use((req, res, next) => {
 //      Ajout du midlleware express flash messages
 //--------------------------------------------------------------------
 app.use(flash());
-app.use(express.urlencoded({extended: false}))
+app.use(express.urlencoded({extended: true}))
 app.use(express.static(path.join(__dirname, 'public')))
 
 //--------------------------------------------------------------------

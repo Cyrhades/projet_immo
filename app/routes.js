@@ -56,4 +56,21 @@ module.exports = (app) => {
         let objController = require('../src/controllers/UserController.js')
         objController.editUserProcess(request, response)
     })
+
+
+    
+    app.get('/admin/realty', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.index(request, response)
+    })
+
+    app.get('/admin/realty/add', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.addRealty(request, response)
+    })
+
+    app.post('/admin/realty/add', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.addRealtyProcess(request, response)
+    })
 };

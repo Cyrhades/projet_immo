@@ -1,0 +1,10 @@
+extends ../layout.pug
+block breadcrumb  
+    li
+        a(href='#')
+            em.fa.fa-home &nbsp;
+    li(class='active') Biens
+
+block content
+    .d-grid.gap-2.d-md-flex.justify-content-md-end
+        a.btn.btn-primary.me-md-2(href="/admin/realty/add") Créer un bien

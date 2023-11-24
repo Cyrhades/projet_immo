@@ -1,0 +1,132 @@
+extends ../layout.pug
+block breadcrumb  
+    li
+        a(href='#')
+            em.fa.fa-home &nbsp;
+    li(class='active') Biens
+
+block content
+    h1 Ajout d'un bien immobilier
+
+    template#tplContact
+        li 
+    template#tplImage
+        .onePicture 
+            img.productImg(src="")
+            input(class="order" type="hidden")
+            input(class="title" type="text" placeholder="Titre (Attribut title)")
+            input(class="alt" type="text" placeholder="Texte alternatif (Attribut alt)")
+    #{route}
+    .row
+        .col-md-12
+            .panel.panel-container
+                .panel.panel-default.articles
+                    .panel-heading
+                        .pull-right
+                            .d-grid.gap-2.d-md-flex.justify-content-md-end
+                                a.btn.btn-secondary(href="/admin/realty") Liste des biens
+                    .panel-body.articles-container
+                        .article.border-bottom
+                            .clear
+                            .row
+                                if error 
+                                    .alert.alert-danger #{error}
+                            .row
+                                form(role="form" action="/admin/realty/add" method="post")
+                                    .col-xs-12.col-lg-6   
+                                        fieldset
+                                            legend Adresse du bien
+                                            .col-lg-12 
+                                                .form-group
+                                                    label Adresse
+                                                    input.form-control(type="text" name="realty[address1]" maxlength="80" placeholder="Adresse" value=realty.address1)
+                                            .col-lg-12 
+                                                .form-group
+                                                    input.form-control(type="text" name="realty[address2]" maxlength="80" placeholder="suite adresse (facultatif)" value=realty.address2)
+                                            .col-lg-6 
+                                                .form-group
+                                                    label Code postal
+                                                    input.form-control(type="text" name="realty[zipcode]" maxlength="10" placeholder="Code postal" value=realty.zipcode)
+                                            .col-lg-6 
+                                                .form-group
+                                                    label Ville
+                                                    input.form-control(type="text" name="realty[town]" maxlength="80" placeholder="Ville" value=realty.town)
+                                            .col-lg-12 
+                                                .form-group
+                                                    label Informations complémentaires
+                                                    textarea.form-control(name="realty[info_address]" style="height:200px;width:100%;" placeholder="Distances des transports en commun, commerces de proximités, etc")= realty.info_address
+
+                                    .col-xs-12.col-lg-6    
+                                        fieldset
+                                            legend Contact du bien
+                                            .form-group
+                                                label Email
+                                                input#contact_by_email.form-control(name="contact[email]" type="email" placeholder="Adresse mail" autocomplete="off" value=contact.email)
+                                                ul#listContacts
+                                            .form-group
+                                                label Civilité
+                                                select#contact_civility.form-control(name="contact[civility]")
+                                                    option(value="1" selected=contact.civility=='1') Monsieur
+                                                    option(value="2" selected=contact.civility=='2') Madame
+                                            .form-group
+                                                label Nom
+                                                input#contact_lastname.form-control(name="contact[lastname]" type="text" placeholder="Nom" value=contact.lastname)
+                                            .form-group
+                                                label Prénom
+                                                input#contact_firstname.form-control(name="contact[firstname]" type="text" placeholder="Prénom" value=contact.firstname)
+                                            .form-group
+                                                label Mobile
+                                                input#contact_mobile.form-control(name="contact[mobile]" type="text" placeholder="Numéro de mobile" value=contact.mobile)
+                                            .form-group
+                                                label Téléphone
+                                                input#contact_phone.form-control(name="contact[phone]" type="text" placeholder="Numéro de téléphone" value=contact.phone)
+                                            .form-group
+                                                label Informations complémentaires
+                                                textarea#contact_info.form-control(name="contact[info]" style="height:90px;width:100%;" placeholder="Disponibilités")= contact.info
+
+                                    .col-xs-12.col-lg-12 
+                                        fieldset
+                                            legend Informations du bien
+                                            .col-xs-12.col-lg-6  
+                                                .col-lg-12        
+                                                    .form-group
+                                                        label Type de bien
+                                                        select.form-control(name="realty[type]")
+                                                            option(value="1" selected=realty.type=="1") Maison
+                                                            option(value="2" selected=realty.type=="2") Appartement
+                                                            option(value="3" selected=realty.type=="3") Bureau
+                                                            option(value="4" selected=realty.type=="4") Garage
+                                                            option(value="5" selected=realty.type=="5") Autres
+    
+                                                .col-lg-6
+                                                    .form-group
+                                                        label Prix net vendeur
+                                                        input.form-control(name="realty[price]" type="number" placeholder="Prix net vendeur" value=realty.price)
+                                              
+                                            .col-xs-12.col-lg-6
+                                                .col-lg-12    
+                                                    .form-group
+                                                        label Surface (m²)
+                                                        input.form-control(name="realty[area]" type="number" min="0" step="1" placeholder="Surface en m²" value=realty.area)
+                                                .col-lg-12  
+                                                    .form-group
+                                                        label Pièces
+                                                        input.form-control(name="realty[room]" type="number" min="0" step="1" placeholder="Nombre de pièces" value=realty.room)
+                                            .col-lg-12 
+                                                .form-group
+                                                    label Informations complémentaires sur le bien
+                                                    textarea.form-control(name="realty[info]" style="height:90px;width:100%;" placeholder="Travaux à effectuer, classe énergie, GES, etc")= realty.info
+
+                                            .lcUpload__block
+                                                .lcUpload__input
+                                                    input.lcUpload__file(type="file" name="photos" id="file" data-multiple-caption="{count} fichiers sélectionnés" multiple)
+                                                    label(for="file")
+                                                        strong Choisissez le fichier
+                                                        span.lcUpload__dragndrop  ou glissez le ici
+                                            
+                                            #lcUpoadList
+                                    .col-lg-12
+                                        button.btn.btn-primary.center-block(type="submit") Enregistrer
+block scripts 
+    script(src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js")
+    script(src="/js/admin/action.js")       
