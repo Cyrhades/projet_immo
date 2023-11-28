@@ -73,4 +73,19 @@ module.exports = (app) => {
         let objController = require('../src/controllers/RealtyController.js')
         objController.addRealtyProcess(request, response)
     })
+
+    app.get('/admin/realty/delete/:id([0-9]+)', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.deleteRealty(request, response)
+    })
+
+    app.get('/admin/realty/edit/:id([0-9]+)', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.editRealty(request, response)
+    })
+
+    app.post('/admin/realty/edit/:id([0-9]+)', (request, response) => {
+        let objController = require('../src/controllers/RealtyController.js')
+        objController.editRealtyProcess(request, response)
+    })
 };

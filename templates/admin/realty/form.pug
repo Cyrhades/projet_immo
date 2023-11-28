@@ -6,7 +6,10 @@ block breadcrumb
     li(class='active') Biens
 
 block content
-    h1 Ajout d'un bien immobilier
+    if realty.id > 0
+        h1 Modification d'un bien immobilier
+    else
+        h1 Ajout d'un bien immobilier
 
     template#tplContact
         li 
@@ -32,7 +35,7 @@ block content
                                 if error 
                                     .alert.alert-danger #{error}
                             .row
-                                form(role="form" action="/admin/realty/add" method="post")
+                                form(role="form" method="post")
                                     .col-xs-12.col-lg-6   
                                         fieldset
                                             legend Adresse du bien

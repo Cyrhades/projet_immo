@@ -24,7 +24,7 @@ module.exports = class UserRepository {
         });
     }
     
-    async getuser() {
+    async getUsers() {
         return await con.promise().query('SELECT * FROM `user`').then((result) => { 
             return (result[0].length > 0 ? result[0] : null);
         });

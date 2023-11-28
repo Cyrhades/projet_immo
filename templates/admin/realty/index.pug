@@ -8,3 +8,31 @@ block breadcrumb
 block content
     .d-grid.gap-2.d-md-flex.justify-content-md-end
         a.btn.btn-primary.me-md-2(href="/admin/realty/add") Créer un bien
+
+    if realties && realties.length > 0
+        table.table
+            thead 
+                tr 
+                    th #
+                    th Adresse
+                    th contact
+                    th(width="1%") 
+            tbody
+                each realty in realties
+                    tr
+                        td #{realty.id}
+                        td 
+                            | #{realty.address1}
+                            | <br> #{realty.address2}
+                            | <br> #{realty.zipcode} #{realty.town}
+                        td 
+                            | #{realty.firstname}  #{realty.lastname}
+                            | <br> #{realty.phone}
+                        td.text-nowrap 
+                            a.btn.btn-primary(href="/admin/realty/edit/"+realty.id)
+                                i.fa.fa-edit
+                            span &nbsp;&nbsp;
+                            a.btn.btn-danger(href="/admin/realty/delete/"+realty.id)
+                                i.fa.fa-trash
+    else 
+        .alert.alert-info Aucun bien

@@ -30,6 +30,8 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `realty`;
 CREATE TABLE IF NOT EXISTS `realty` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id_user` int(11)  NOT NULL,
+  `id_contact` int(11)  NOT NULL,
   `address1` varchar(80) NOT NULL,
   `address2` varchar(80) NOT NULL,
   `zipcode` varchar(10) NOT NULL,

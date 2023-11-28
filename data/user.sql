@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `phone` varchar(16) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 ALTER TABLE `user` ADD PRIMARY KEY (`id`);
 
