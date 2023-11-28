@@ -8,7 +8,6 @@ class RealtyController {
     index (request, response) {
         const repo = new RealtyRepository();
         repo.getRealties().then((realties) => {
-            console.log(realties)
             response.render('admin/realty/index', {realties});
         })
     }
